@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 9-element_length  :
-    9th Task of the project
+    10th Task of the project
 """
 
 from typing import Iterable, Sequence, List, Tuple
