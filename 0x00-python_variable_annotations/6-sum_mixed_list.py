@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-5-Sum  :
-    sixth Task of the project
+6-Sum  :
+    7th Task of the project
 """
 
 from typing import List, Union
