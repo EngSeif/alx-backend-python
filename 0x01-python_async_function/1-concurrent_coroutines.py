@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import random
+from typing import List
 
 """
 1-concurrent_coroutines.py:
@@ -10,11 +11,15 @@ import random
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n: int, max_delay: int) -> float:
+async def wait_n(n: int, max_delay: int) -> List[float]:
     """
     wait_n  :
     will spawn wait_random n times with the specified max_delay.
     """
     wait_time: float = random.uniform(0, max_delay)
-    R = await asyncio.gather(*(wait_random(wait_time) for i in range(0, n)))
-    return R
+    tasks = [asyncio.create_task(wait_random(wait_time)) for _ in range(n)]
+    delays = []
+    for task in asyncio.as_completed(tasks):
+        delay = await task
+        delays.append(delay)
+    return delays
